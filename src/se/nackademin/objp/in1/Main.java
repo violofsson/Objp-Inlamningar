@@ -43,8 +43,7 @@ public class Main {
                     // Skriv ut rekommendation
                 }
             } catch (Exception e) {
-                String errMsg = "Ett oväntat fel inträffade under körning.\n" +
-                        "Rapportera följande meddelande till IT-supporten:\n" +
+                String errMsg = "Ett oväntat fel inträffade under körning:\n" +
                         e.getLocalizedMessage();
                 JOptionPane.showMessageDialog(null, errMsg);
             }
