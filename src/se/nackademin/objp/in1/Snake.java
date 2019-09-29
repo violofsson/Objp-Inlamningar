@@ -1,8 +1,13 @@
 package se.nackademin.objp.in1;
 
-public class Snake extends Animal {
-    public Snake(String name, int weightInGrams) {
-        super(name, weightInGrams);
+public class Snake extends Pet {
+    public Snake(String name, double weight) {
+        super(name, weight);
+    }
+
+    @Override
+    public String getFoodType() {
+        return "ormpellets";
     }
 
     @Override

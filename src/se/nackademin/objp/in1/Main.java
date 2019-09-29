@@ -4,12 +4,12 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        Animal[] guests = {
-                new Dog("Sigge", 5000),
-                new Dog("Dogge", 10_000),
-                new Cat("Venus", 5000),
-                new Cat("Ove", 3000),
-                new Snake("Hypno", 1000)
+        Pet[] guests = {
+                new Dog("Sigge", 5.0),
+                new Dog("Dogge", 10.0),
+                new Cat("Venus", 5.0),
+                new Cat("Ove", 3.0),
+                new Snake("Hypno", 1.0)
         };
 
         while (true) {
@@ -27,8 +27,10 @@ public class Main {
                 if (lookup == null)
                     break;
             } catch (Exception e) {
-                // TODO Ändra till mer relevanta meddelanden efter test
-                JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
+                String errMsg = "Ett oväntat fel inträffade under körning.\n" +
+                        "Rapportera följande meddelande till IT-supporten:\n" +
+                        e.getLocalizedMessage();
+                JOptionPane.showMessageDialog(null, errMsg);
             }
         }
     }
