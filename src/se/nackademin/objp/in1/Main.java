@@ -32,7 +32,7 @@ public class Main {
 
     private static String getPortionRecommendation(Pet p) {
         if (p == null) throw new NullPointerException();
-        int portion = p.getOnePortion();
+        int portion = p.getPortionInGrammes();
         String foodType = p.getFoodType();
         return p.getName() + " behöver " + portion + " gram " +
                 foodType + " per portion.";

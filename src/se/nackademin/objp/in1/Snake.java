@@ -11,7 +11,7 @@ public class Snake extends Pet {
     }
 
     @Override
-    public int getOnePortion() {
+    public int getPortionInGrammes() {
         return 20;
     }
 }

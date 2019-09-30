@@ -11,7 +11,7 @@ public class Dog extends Pet {
     }
 
     @Override
-    public int getOnePortion() {
+    public int getPortionInGrammes() {
         // (vikt i g) / 100 = 1000 * (vikt i kg) / 100
         return (int) (10*getWeight());
     }
