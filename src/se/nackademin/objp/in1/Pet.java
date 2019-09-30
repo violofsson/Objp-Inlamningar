@@ -5,8 +5,16 @@ public abstract class Pet implements IFeedable {
     private double weight;
 
     public Pet(String name, double weight) {
-        this.name = name;
-        this.weight = weight;
+        if (name != null && !name.isBlank()) {
+            this.name = name;
+        } else {
+            throw new IllegalArgumentException("Djur måste ha ett namn.");
+        }
+        if (weight >= 0) {
+            this.weight = weight;
+        } else {
+            throw new IllegalArgumentException("Djur får inte ha negativ vikt.");
+        }
     }
 
     public String getName() {
