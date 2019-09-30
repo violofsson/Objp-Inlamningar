@@ -5,6 +5,7 @@ public class Cat extends Pet {
         super(name, weight);
     }
 
+    @Override
     public String getFoodType() {
         return "kattfoder";
     }
