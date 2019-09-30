@@ -3,32 +3,39 @@ package se.nackademin.objp.in1;
 import javax.swing.*;
 
 public class Main {
-
-    enum HotelGuests {
+    // Till skillnad från de andra klasserna ska HotelGuest aldrig
+    // användas utanför Main, ens i teorin - den är ett testverktyg,
+    // inte en databas
+    enum HotelGuest {
         SIGGE(new Dog("Sigge", 5.0)),
         DOGGE(new Dog("Dogge", 10.0)),
         VENUS(new Cat("Venus", 5.0)),
         OVE(new Cat("Ove", 3.0)),
         HYPNO(new Snake("Hypno", 1.0));
 
-        private Pet namedPet;
+        private Pet storedPet;
 
-        private HotelGuests(Pet p) {
-            namedPet = p;
+        HotelGuest(Pet p) {
+            storedPet = p;
         }
 
-        public Pet getPet() {
-            return namedPet;
-        }
-
-        public static Pet getPetByName(String name) {
-            for (HotelGuests p : HotelGuests.values()) {
-                if (name.equalsIgnoreCase(p.getPet().getName())) {
-                    return p.getPet();
+        public static Pet getHotelGuestByName(String name) {
+            for (HotelGuest hg : HotelGuest.values()) {
+                String guestName = hg.storedPet.getName();
+                if (name.equalsIgnoreCase(guestName)) {
+                    return hg.storedPet;
                 }
             }
             return null;
         }
+    }
+
+    private static String getPortionRecommendation(Pet p) {
+        if (p == null) throw new NullPointerException();
+        int portion = p.getOnePortion();
+        String foodType = p.getFoodType();
+        return p.getName() + " behöver " + portion + " gram " +
+                foodType + " per portion.";
     }
 
     public static void main(String[] args) {
@@ -36,29 +43,30 @@ public class Main {
             // Visa inmatning
             try {
                 String lookup = JOptionPane.showInputDialog(
-                        "Vilket djur ska få mat?");
+                        "Vilket djur ska få mat?\n" +
+                                "(Klicka på Avbryt eller lämna en " +
+                                "tom rad för att avsluta.)");
+
                 // TODO Städa upp metoden
-                if (lookup == null) {
+                if (lookup == null || lookup.isBlank()) {
                     break;
                 }
-                Pet toFeed = HotelGuests.getPetByName(lookup);
-                if (toFeed == null) {
+                lookup = lookup.strip();
+
+                Pet toBeFed = HotelGuest.getHotelGuestByName(lookup);
+                if (toBeFed == null) {
                     // Djuret finns inte
                     JOptionPane.showMessageDialog(null,
                             "Hittade inget djur med namnet '" +
                                     lookup + "'.");
                 } else {
-                    double portion = toFeed.getOnePortion();
-                    String foodType = toFeed.getFoodType();
-                    // Skriv ut rekommendation
                     JOptionPane.showMessageDialog(null,
-                            toFeed.getName() + " behöver " + portion
-                            + " gram " + foodType + " per portion.");
+                            getPortionRecommendation(toBeFed));
                 }
             } catch (Exception e) {
                 String errMsg =
                         "Ett oväntat fel inträffade under körning:\n" +
-                                e.getLocalizedMessage();
+                                e.getMessage();
                 JOptionPane.showMessageDialog(null, errMsg);
             }
         }

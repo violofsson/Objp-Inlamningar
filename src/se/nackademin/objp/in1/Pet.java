@@ -1,10 +1,5 @@
 package se.nackademin.objp.in1;
 
-interface IFeedable {
-    String getFoodType();
-    int getOnePortion();
-}
-
 public abstract class Pet implements IFeedable {
     private String name;
     private double weight;
