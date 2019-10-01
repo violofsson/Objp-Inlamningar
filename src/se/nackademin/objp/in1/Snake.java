@@ -1,8 +1,8 @@
 package se.nackademin.objp.in1;
 
 public class Snake extends Pet {
-    public Snake(String name, double weight) {
-        super(name, weight);
+    public Snake(String name, double weightInKilos) {
+        super(name, weightInKilos);
     }
 
     @Override

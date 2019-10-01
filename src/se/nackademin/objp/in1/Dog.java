@@ -1,8 +1,8 @@
 package se.nackademin.objp.in1;
 
 public class Dog extends Pet {
-    public Dog(String name, double weight) {
-        super(name, weight);
+    public Dog(String name, double weightInKilos) {
+        super(name, weightInKilos);
     }
 
     @Override
@@ -13,6 +13,6 @@ public class Dog extends Pet {
     @Override
     public int getPortionInGrammes() {
         // (vikt i g) / 100 = 1000 * (vikt i kg) / 100
-        return (int) (10*getWeight());
+        return (int) (10 * getWeightInKilos());
     }
 }
