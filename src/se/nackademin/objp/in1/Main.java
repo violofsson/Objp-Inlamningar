@@ -23,7 +23,7 @@ public class Main {
         }
 
         // Returnerar null om det sökta djuret saknas
-        public static Pet getHotelGuestByName(String name) {
+        static Pet getHotelGuestByName(String name) {
             for (HotelGuest hg : values()) {
                 String guestName = hg.storedPet.getName();
                 if (name.equalsIgnoreCase(guestName)) {
@@ -62,12 +62,13 @@ public class Main {
                 String lookup = getUserInput(
                         "Vilket djur ska få mat?\n" +
                                 "(Klicka på Avbryt eller lämna en " +
-                                "blank rad för att avsluta.)");
-                if (lookup == null || lookup.isBlank()) {
+                                "tom rad för att avsluta.)");
+                // lookup.isEmpty() borde ge false om lookup är null,
+                // men av någon anledning får vi ändå NullPointerException
+                // om vi inte explicit testar för null först
+                if (lookup == null || lookup.isEmpty()) {
                     break;
                 }
-                // Eliminera en möjlig felkälla (oönskade mellanslag)
-                // utan någon realistisk nackdel
                 lookup = lookup.strip();
 
                 Pet toBeFed = HotelGuest.getHotelGuestByName(lookup);
