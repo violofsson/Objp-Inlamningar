@@ -1,0 +1,57 @@
+package se.nackademin.objp.in2;
+
+import org.junit.jupiter.api.Test;
+
+import java.io.FileNotFoundException;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class MemberDatabaseTest {
+    private MemberDatabase db = MemberDatabase.getInstance();
+    private Person alice = new Person("Alice Albert", "960413");
+    private Person bob = new Person("Bob Bobson", "841230");
+    private String inFile = "test/se/nackademin/objp/in2/customers.txt";
+    private String outFile = "test/se/nackademin/objp/in2/pass.txt";
+
+    @Test
+    void testReading() {
+        db.dataList.clear();
+        assertDoesNotThrow(() -> db.readMembersFromFile(inFile));
+        assertThrows(FileNotFoundException.class,
+                () -> db.readMembersFromFile("adjasjcosj"));
+        assertTrue(db.dataList.size() > 0);
+        Member alhambra = db.dataList.get(0);
+        assertEquals("7603021234", alhambra.getPersonalID());
+        assertEquals("Alhambra Aromes", alhambra.getName());
+        assertEquals("2018-07-01",
+                alhambra.getLastPaymentDate().toString());
+    }
+
+    @Test
+    void testAddingAndSearching() throws NoSuchMemberException {
+        db.dataList.clear();
+        assertDoesNotThrow(() -> {
+            db.addMember(alice);
+            db.addMember(bob);
+        });
+        assertThrows(DuplicateMemberException.class,
+                () -> db.addMember(alice));
+        // Sök med namn? Personnr? Person-objekt?
+        assertTrue(db.hasMember(alice));
+        assertFalse(db.hasMember(new Person("a", "b")));
+        assertTrue(db.getMember(bob).samePersonAs(bob));
+        assertFalse(db.getMember(alice).samePersonAs(bob));
+        assertThrows(NoSuchMemberException.class, () ->
+                db.getMember(new Person("", "")));
+    }
+
+    @Test
+    void testWriting() throws DuplicateMemberException,
+            NoSuchMemberException, SessionWriteException {
+        db.dataList.clear();
+        db.addMember(alice);
+        db.addMember(bob);
+        db.getMember(bob).registerSession();
+        db.writeSessionsToFile(outFile);
+    }
+}
