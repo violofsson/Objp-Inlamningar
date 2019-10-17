@@ -23,15 +23,23 @@ public class Member extends Person {
         return this.lastPayment;
     }
 
+    public void registerPayment(LocalDate d) {
+        this.lastPayment = d;
+    }
+
     public void registerPayment() {
-        this.lastPayment = LocalDate.now();
+        registerPayment(LocalDate.now());
     }
 
     public LocalDate getLastSession() {
         return this.lastSession;
     }
 
+    public void registerSession(LocalDate d) {
+        this.lastSession = d;
+    }
+
     public void registerSession() {
-        this.lastSession = LocalDate.now();
+        registerSession(LocalDate.now());
     }
 }

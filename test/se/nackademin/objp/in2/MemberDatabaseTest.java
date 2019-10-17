@@ -16,7 +16,7 @@ class MemberDatabaseTest {
     private Person bob = new Person("Bob Bobson", "841230");
     private String inFile = "test/se/nackademin/objp/in2/customers.txt";
     private String outFile = "test/se/nackademin/objp/in2/pass.txt";
-    LocalDate today = LocalDate.now();
+    private LocalDate today = LocalDate.now();
 
     @Test
     void testReading() {
@@ -56,7 +56,7 @@ class MemberDatabaseTest {
         Files.deleteIfExists(Paths.get(outFile));
         db.addMember(alice);
         db.addMember(bob);
-        db.getMember(bob).registerSession();
+        db.getMember(bob).registerSession(today);
         db.writeSessionsToFile(outFile);
         String output = Files.readString(Paths.get(outFile));
         assertEquals("841230 Bob Bobson tränade " + today + "\n",
