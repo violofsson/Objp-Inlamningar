@@ -36,7 +36,8 @@ public class MemberDatabase {
         }
     }
 
-    public void writeSessionsToFile(String filename) throws SessionWriteException {
+    public void writeSessionsToFile(String filename)
+            throws SessionWriteException {
         try (PrintWriter out = new PrintWriter(
                 new FileWriter(filename, true))) { // append = true
             for (Member m : dataList) {

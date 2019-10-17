@@ -22,11 +22,7 @@ class PersonTest {
         assertTrue(alsoBob.samePersonAs(bob));
         assertTrue(bob.samePersonAs(bobAgain));
         assertTrue(bobAgain.samePersonAs(bob));
-        // Hur hantera dubbla medlemsposter?
         assertTrue(alsoBob.samePersonAs(bobAgain));
-        // ???
-        //assertThrows(DuplicateMemberException.class,
-        //        () -> {alsoBob.samePersonAs(bobAgain);});
     }
 
     @Test

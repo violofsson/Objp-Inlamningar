@@ -36,7 +36,6 @@ class MemberDatabaseTest {
         });
         assertThrows(DuplicateMemberException.class,
                 () -> db.addMember(alice));
-        // Sök med namn? Personnr? Person-objekt?
         assertTrue(db.hasMember(alice));
         assertFalse(db.hasMember(new Person("a", "b")));
         assertTrue(db.getMember(bob).samePersonAs(bob));
