@@ -34,11 +34,9 @@ class PersonTest {
         assertEquals(alice.getName(), "Alice Albert");
         assertEquals(alice.getPersonalID(), "960413");
         assertNotEquals(alice.getName(), bob.getName());
-        assertEquals(bob.getLastPaymentDate(), LocalDate.now());
-        assertNotEquals(alice.getLastPaymentDate(),
-                bob.getLastPaymentDate());
-        alice.registerPayment();
         assertEquals(alice.getLastPaymentDate(),
+                LocalDate.of(2010, 8, 30));
+        assertNotEquals(alice.getLastPaymentDate(),
                 bob.getLastPaymentDate());
     }
 }

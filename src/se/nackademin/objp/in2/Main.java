@@ -37,6 +37,7 @@ public class Main {
                 if (db.hasCurrentMember(customer)) {
                     showMessage(customer.getName() +
                             " är medlem. Välkommen!");
+                    db.getMember(customer).registerSession();
                 } else if (db.hasMember(customer)) {
                     showMessage(customer.getName() +
                             " är före detta medlem.\n" +
