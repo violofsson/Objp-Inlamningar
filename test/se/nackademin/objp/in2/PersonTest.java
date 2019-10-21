@@ -21,7 +21,6 @@ class PersonTest {
         assertTrue(bob.samePersonAs(alsoBob));
         assertTrue(alsoBob.samePersonAs(bob));
         assertTrue(bob.samePersonAs(bobAgain));
-        assertTrue(bobAgain.samePersonAs(bob));
         assertTrue(alsoBob.samePersonAs(bobAgain));
     }
 
