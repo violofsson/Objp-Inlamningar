@@ -39,7 +39,7 @@ public class SlidingPuzzleController {
     void checkWinning() {
         if (model.isSolved()) {
             gameOver = true;
-            view.reportWin();
+            view.setMessage("Grattis! Du har vunnit!");
             view.disableBoard();
         }
     }
@@ -62,5 +62,6 @@ public class SlidingPuzzleController {
         model = new SlidingPuzzleModel(rows, cols);
         model.shuffle();
         view.setBoardView(createBoardView());
+        view.setMessage(rows + "x" + cols);
     }
 }
