@@ -23,6 +23,10 @@ public class SlidingPuzzleView extends BorderPane {
         setBottom(buttonPane);
     }
 
+    void disableBoard() {
+        boardView.setDisable(true);
+    }
+
     protected BoardView getBoardView() {
         return boardView;
     }

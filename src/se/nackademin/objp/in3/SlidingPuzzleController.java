@@ -40,6 +40,7 @@ public class SlidingPuzzleController {
         if (model.isSolved()) {
             gameOver = true;
             view.reportWin();
+            view.disableBoard();
         }
     }
 
