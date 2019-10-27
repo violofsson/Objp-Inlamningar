@@ -17,18 +17,16 @@ public class SlidingPuzzleController {
     EventHandler<ActionEvent> tileHandler = new EventHandler<>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-            if (!gameOver) {
-                if (actionEvent.getSource() instanceof TileButton) {
-                    int tileId = ((TileButton) actionEvent.getSource()).ID;
-                    if (model.areAdjacent(0, tileId)) {
-                        model.swap(0, tileId);
-                        view.getBoardView().placeTile(
-                                (TileButton) actionEvent.getSource(),
-                                model.getRow(tileId),
-                                model.getColumn(tileId));
-                    }
-                    checkWinning();
+            if (!gameOver && actionEvent.getSource() instanceof TileButton) {
+                int tileId = ((TileButton) actionEvent.getSource()).ID;
+                if (model.areAdjacent(0, tileId)) {
+                    model.swap(0, tileId);
+                    view.getBoardView().placeTile(
+                            (TileButton) actionEvent.getSource(),
+                            model.getRow(tileId),
+                            model.getColumn(tileId));
                 }
+                checkWinning();
             }
         }
     };
@@ -41,7 +39,7 @@ public class SlidingPuzzleController {
     void checkWinning() {
         if (model.isSolved()) {
             gameOver = true;
-            // Meddelande om vinst
+            view.reportWin();
         }
     }
 
@@ -49,8 +47,8 @@ public class SlidingPuzzleController {
         BoardView boardView = new BoardView();
         for (Integer i : model.boardState) {
             if (i == SlidingPuzzleModel.EMPTYSPACE) continue;
-            TileButton t = new TileButton(i, tileHandler);
-            boardView.placeTile(t, model.getRow(i), model.getColumn(i));
+            TileButton tb = new TileButton(i, tileHandler);
+            boardView.placeTile(tb, model.getRow(i), model.getColumn(i));
         }
         return boardView;
     }

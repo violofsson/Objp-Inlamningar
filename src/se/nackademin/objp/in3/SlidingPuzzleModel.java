@@ -9,7 +9,7 @@ public class SlidingPuzzleModel {
     // "etiketter" - där motsvarar 0 det tomma utrymmet
     // I teorin kan vi ändra typ godtyckligt, så länge vi justerar
     // värdet på EMPTYSPACE och alltid har entydiga värden att jämföra
-    // mellan spelbrädet och lösningen
+    // mellan spelplanen och lösningen
 
     protected List<Integer> boardState = new ArrayList<>();
     private List<Integer> solution;
