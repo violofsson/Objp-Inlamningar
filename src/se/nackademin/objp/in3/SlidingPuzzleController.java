@@ -8,7 +8,6 @@ public class SlidingPuzzleController {
     private SlidingPuzzleModel model;
     private int rows = 4;
     private int cols = 4;
-    private boolean gameOver = false;
 
     // TODO Lyssnare för inställningar
     EventHandler<ActionEvent> newGameHandler = actionEvent -> newGame(rows, cols);
@@ -17,7 +16,7 @@ public class SlidingPuzzleController {
     EventHandler<ActionEvent> tileHandler = new EventHandler<>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-            if (!gameOver && actionEvent.getSource() instanceof TileButton) {
+            if (actionEvent.getSource() instanceof TileButton) {
                 int tileId = ((TileButton) actionEvent.getSource()).ID;
                 if (model.areAdjacent(0, tileId)) {
                     model.swap(0, tileId);
@@ -38,7 +37,6 @@ public class SlidingPuzzleController {
 
     void checkWinning() {
         if (model.isSolved()) {
-            gameOver = true;
             view.setMessage("Grattis! Du har vunnit!");
             view.disableBoard();
         }
