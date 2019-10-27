@@ -4,8 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public class SlidingPuzzleController {
-    SlidingPuzzleView view;
-    SlidingPuzzleModel model;
+    private SlidingPuzzleView view;
+    private SlidingPuzzleModel model;
     private int rows = 4;
     private int cols = 4;
     private boolean gameOver = false;
@@ -18,12 +18,12 @@ public class SlidingPuzzleController {
         @Override
         public void handle(ActionEvent actionEvent) {
             if (!gameOver) {
-                if (actionEvent.getSource() instanceof Tile) {
-                    int tileId = ((Tile) actionEvent.getSource()).ID;
+                if (actionEvent.getSource() instanceof TileButton) {
+                    int tileId = ((TileButton) actionEvent.getSource()).ID;
                     if (model.areAdjacent(0, tileId)) {
                         model.swap(0, tileId);
                         view.getBoardView().placeTile(
-                                (Tile) actionEvent.getSource(),
+                                (TileButton) actionEvent.getSource(),
                                 model.getRow(tileId),
                                 model.getColumn(tileId));
                     }
@@ -49,7 +49,7 @@ public class SlidingPuzzleController {
         BoardView boardView = new BoardView();
         for (Integer i : model.boardState) {
             if (i == SlidingPuzzleModel.EMPTYSPACE) continue;
-            Tile t = new Tile(i, tileHandler);
+            TileButton t = new TileButton(i, tileHandler);
             boardView.placeTile(t, model.getRow(i), model.getColumn(i));
         }
         return boardView;
