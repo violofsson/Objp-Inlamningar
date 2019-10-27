@@ -7,8 +7,9 @@ import java.util.List;
 public class SlidingPuzzleModel {
     // Obs att vi använder 0-index överallt utom på brickornas
     // "etiketter" - där motsvarar 0 det tomma utrymmet
-    // I teorin kan vi ändra typ godtyckligt, så länge vi fortfarande
-    // har entydiga värden att jämföra mellan spelbrädet och lösningen
+    // I teorin kan vi ändra typ godtyckligt, så länge vi justerar
+    // värdet på EMPTYSPACE och alltid har entydiga värden att jämföra
+    // mellan spelbrädet och lösningen
 
     protected List<Integer> boardState = new ArrayList<>();
     private List<Integer> solution;

@@ -10,16 +10,10 @@ public class SlidingPuzzleController {
     private int cols = 4;
     private boolean gameOver = false;
 
-    // Lyssnare för nytt spel
+    // TODO Lyssnare för inställningar
     EventHandler<ActionEvent> newGameHandler = actionEvent -> newGame(rows, cols);
-
-    // Lyssnare för inställningar
-
-    // Lyssnare för avslutning?
     EventHandler<ActionEvent> exitHandler = actionEvent -> System.exit(0);
 
-    // Lyssnare för pusselbitar - de delar på en och identifieras
-    // med motsvarande bitar i modellen
     EventHandler<ActionEvent> tileHandler = new EventHandler<>() {
         @Override
         public void handle(ActionEvent actionEvent) {
