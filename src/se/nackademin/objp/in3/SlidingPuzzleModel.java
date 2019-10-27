@@ -12,6 +12,7 @@ public class SlidingPuzzleModel {
 
     protected List<Integer> boardState = new ArrayList<>();
     private List<Integer> solution;
+    public static final int EMPTYSPACE = 0;
     private final int COLUMNS;
 
     SlidingPuzzleModel(int rows, int cols) {

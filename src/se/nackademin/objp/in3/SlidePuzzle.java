@@ -8,30 +8,33 @@ import javafx.stage.Stage;
 
 public class SlidePuzzle extends Application {
     private BorderPane root = new BorderPane();
-    private GridPane boardView = new GridPane();
+    private BoardView boardView = new BoardView();
     private FlowPane buttonPane = new FlowPane();
 
-    public GridPane getBoardView() {
+    public BoardView getBoardView() {
         return boardView;
     }
 
-    public void setBoardView(GridPane boardView) {
+    public void setBoardView(BoardView boardView) {
         this.boardView = boardView;
         root.setCenter(boardView);
     }
 
     @Override
     public void start(Stage primaryStage) {
+        SlidingPuzzleController controller = new SlidingPuzzleController(this);
         Button newGameButton = new Button("Nytt spel");
+        newGameButton.setOnAction(controller.newGameHandler);
         Button settingsButton = new Button("Inställningar");
         Button exitButton = new Button("Avsluta");
+        exitButton.setOnAction(controller.exitHandler);
         buttonPane.getChildren().addAll(newGameButton, settingsButton, exitButton);
 
         root.setCenter(boardView);
         root.setBottom(buttonPane);
 
         primaryStage.setScene(new Scene(root));
-        primaryStage.setTitle("");
+        primaryStage.setTitle("15");
         primaryStage.show();
     }
 
