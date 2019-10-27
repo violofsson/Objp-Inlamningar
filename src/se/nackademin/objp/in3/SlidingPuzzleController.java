@@ -2,7 +2,7 @@ package se.nackademin.objp.in3;
 
 public class SlidingPuzzleController {
     SlidePuzzle view;
-    //SlidingPuzzleModel model;
+    SlidingPuzzleModel model;
 
     // Lyssnare för nytt spel
     // Lyssnare för inställningar
@@ -13,11 +13,11 @@ public class SlidingPuzzleController {
 
     SlidingPuzzleController() {
         view = new SlidePuzzle();
-        //newGame(4, 4);
+        newGame(4, 4);
     }
 
     void newGame(int rows, int cols) {
-        //model = new SlidingPuzzleModel(rows, cols);
+        model = new SlidingPuzzleModel(rows, cols);
         //Skapa GridPane här eller i vyn?
         //view.setNågonting
     }
