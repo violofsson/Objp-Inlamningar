@@ -11,7 +11,6 @@ public class SlidingPuzzle extends Application {
         SlidingPuzzleView root = controller.getView();
 
         primaryStage.setScene(new Scene(root));
-        //primaryStage.getScene().getStylesheets().add("style.css");
         primaryStage.setTitle("15");
         primaryStage.show();
     }

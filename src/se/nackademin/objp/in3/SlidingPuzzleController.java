@@ -24,22 +24,19 @@ public class SlidingPuzzleController {
         });
     });
 
-    EventHandler<ActionEvent> tileHandler = new EventHandler<>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-            if (actionEvent.getSource() instanceof TileButton) {
-                int tileId = ((TileButton) actionEvent.getSource()).ID;
-                if (model.areAdjacent(0, tileId)) {
-                    model.swap(0, tileId);
-                    view.getBoardView().placeTile(
-                            (TileButton) actionEvent.getSource(),
-                            model.getRow(tileId),
-                            model.getColumn(tileId));
-                }
-                checkWinning();
+    EventHandler<ActionEvent> tileHandler = (actionEvent -> {
+        if (actionEvent.getSource() instanceof TileButton) {
+            int tileId = ((TileButton) actionEvent.getSource()).ID;
+            if (model.areAdjacent(0, tileId)) {
+                model.swap(0, tileId);
+                view.getBoardView().placeTile(
+                        (TileButton) actionEvent.getSource(),
+                        model.getRow(tileId),
+                        model.getColumn(tileId));
             }
+            checkWinning();
         }
-    };
+    });
 
     SlidingPuzzleController() {
         view = new SlidingPuzzleView(this);
