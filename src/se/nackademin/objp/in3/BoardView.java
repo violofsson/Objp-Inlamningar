@@ -6,7 +6,6 @@ public class BoardView extends GridPane {
     public BoardView() {
         super();
         this.getStyleClass().add("board-view");
-        this.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
     }
 
     void placeTile(TileButton t, int row, int col) {

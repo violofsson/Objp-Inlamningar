@@ -2,8 +2,6 @@
     -fx-font-size: 14pt;
     -fx-text-fill: black;
     -fx-background-color: lightgrey;
-    -fx-hgap: 5px;
-    -fx-vgap: 5px;
 }
 
 .button {
@@ -13,6 +11,7 @@
 
 .button-pane .button {
     -fx-background-color: rgba(0,0,0,0.0);
+    -fx-padding: 4px;
 }
 
 .button-pane .button:focused {
@@ -21,10 +20,12 @@
 
 .board-view {
     -fx-background-color: darkgrey;
-    -fx-hgap: 0;
-    -fx-vgap: 0;
+    -fx-hgap: 2px;
+    -fx-vgap: 2px;
     -fx-pref-width: 250px;
     -fx-pref-height: 250px;
+    -fx-max-width: 100000px;
+    -fx-max-height: 100000px;
     -fx-alignment: center;
 }
 
@@ -32,6 +33,10 @@
     -fx-font-size: 16pt;
     -fx-min-width: 3em;
     -fx-min-height: 3em;
+    -fx-pref-width: 1000px;
+    -fx-pref-height: 1000px;
+    -fx-max-width: 1000px;
+    -fx-max-height: 1000px;
     -fx-background-color: white;
 }
 
@@ -45,4 +50,5 @@
 
 .message-box {
     -fx-font-weight: bold;
+    -fx-padding: 4px;
 }

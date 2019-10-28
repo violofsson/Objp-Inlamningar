@@ -11,6 +11,5 @@ public class TileButton extends Button {
         ID = i;
         this.setOnAction(handler);
         this.getStyleClass().add("tile");
-        this.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
     }
 }
