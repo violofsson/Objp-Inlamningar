@@ -2,7 +2,7 @@ package se.nackademin.objp.in3;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public class SlidingPuzzleView extends BorderPane {
@@ -17,8 +17,9 @@ public class SlidingPuzzleView extends BorderPane {
         Button exitButton = new Button("Avsluta");
         exitButton.setOnAction(controller.exitHandler);
 
-        FlowPane buttonPane = new FlowPane();
+        HBox buttonPane = new HBox();
         buttonPane.getChildren().addAll(newGameButton, settingsButton, exitButton);
+        buttonPane.getStyleClass().add("button-pane");
 
         setTop(buttonPane);
         setBottom(msg);

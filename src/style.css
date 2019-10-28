@@ -1,5 +1,5 @@
 .root {
-    -fx-font-size: 16pt;
+    -fx-font-size: 14pt;
     -fx-text-fill: black;
     -fx-background-color: lightgrey;
     -fx-hgap: 5px;
@@ -7,15 +7,16 @@
 }
 
 .button {
-    -fx-background-color: white;
+    -fx-border-color: rgba(0,0,0,0.0);
+    -fx-border-width: 3px;
 }
 
-.button:hover {
-    -fx-background-color: lightgrey;
+.button-pane .button {
+    -fx-background-color: rgba(0,0,0,0.0);
 }
 
-.button:focused {
-    -fx-border-color: lightblue;
+.button-pane .button:focused {
+    -fx-border-color: darkgrey;
 }
 
 .board-view {
@@ -28,12 +29,20 @@
 }
 
 .tile {
-    /* Storlekar */
-    -fx-min-width: 2em;
-    -fx-min-height: 2em;
+    -fx-font-size: 16pt;
+    -fx-min-width: 3em;
+    -fx-min-height: 3em;
+    -fx-background-color: white;
+}
+
+.tile:focused {
+    -fx-border-color: lightblue;
+}
+
+.tile:hover {
+    -fx-background-color: lightgrey;
 }
 
 .message-box {
-    -fx-font-size: 14pt;
     -fx-font-weight: bold;
 }
