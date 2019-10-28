@@ -35,7 +35,7 @@ public class SlidingPuzzleController {
         newGame(rows, cols);
     }
 
-    void checkWinning() {
+    private void checkWinning() {
         if (model.isSolved()) {
             view.setMessage("Grattis! Du har vunnit!");
             view.disableBoard();
