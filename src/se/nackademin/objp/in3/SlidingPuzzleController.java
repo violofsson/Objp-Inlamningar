@@ -2,6 +2,9 @@ package se.nackademin.objp.in3;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.util.Pair;
+
+import java.util.Optional;
 
 public class SlidingPuzzleController {
     private SlidingPuzzleView view;
@@ -9,9 +12,17 @@ public class SlidingPuzzleController {
     private int rows = 4;
     private int cols = 4;
 
-    // TODO Lyssnare för inställningar
     EventHandler<ActionEvent> newGameHandler = actionEvent -> newGame(rows, cols);
     EventHandler<ActionEvent> exitHandler = actionEvent -> System.exit(0);
+
+    EventHandler<ActionEvent> settingsHandler = (actionEvent -> {
+        Optional<Pair<Integer, Integer>> newSettings = view.changeSettings(rows, cols);
+        newSettings.ifPresent(rowsAndCols -> {
+            this.rows = rowsAndCols.getKey();
+            this.cols = rowsAndCols.getValue();
+            newGame(rows, cols);
+        });
+    });
 
     EventHandler<ActionEvent> tileHandler = new EventHandler<>() {
         @Override
@@ -60,6 +71,6 @@ public class SlidingPuzzleController {
         model = new SlidingPuzzleModel(rows, cols);
         model.shuffle();
         view.setBoardView(createBoardView());
-        view.setMessage(rows + "x" + cols);
+        view.setMessage(rows + " rader, " + cols + " kolumner");
     }
 }
