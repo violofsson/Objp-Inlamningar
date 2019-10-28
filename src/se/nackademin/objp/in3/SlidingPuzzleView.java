@@ -5,11 +5,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 
 import java.util.Optional;
 
 public class SlidingPuzzleView extends BorderPane {
+    private static String stylesheet = "style.css";
     private BoardView boardView = new BoardView();
     private Text msg = new Text(" ");
 
@@ -38,6 +40,7 @@ public class SlidingPuzzleView extends BorderPane {
             grid.addRow(1, colsLabel, colsCombo);
 
             getDialogPane().setContent(grid);
+            getDialogPane().getStylesheets().add(stylesheet);
 
             setResultConverter(buttonType -> {
                 if (buttonType == ButtonType.OK) {
@@ -66,6 +69,7 @@ public class SlidingPuzzleView extends BorderPane {
         setTop(buttonPane);
         setBottom(msg);
         setCenter(boardView);
+        getStylesheets().setAll(stylesheet);
     }
 
     Optional<Pair<Integer, Integer>> changeSettings(int oldRows, int oldCols) {
