@@ -1,0 +1,39 @@
+.root {
+    -fx-font-size: 16pt;
+    -fx-text-fill: black;
+    -fx-background-color: lightgrey;
+    -fx-hgap: 5px;
+    -fx-vgap: 5px;
+}
+
+.button {
+    -fx-background-color: white;
+}
+
+.button:hover {
+    -fx-background-color: lightgrey;
+}
+
+.button:focused {
+    -fx-border-color: lightblue;
+}
+
+.board-view {
+    -fx-background-color: darkgrey;
+    -fx-hgap: 0;
+    -fx-vgap: 0;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 250px;
+    -fx-alignment: center;
+}
+
+.tile {
+    /* Storlekar */
+    -fx-min-width: 2em;
+    -fx-min-height: 2em;
+}
+
+.message-box {
+    -fx-font-size: 14pt;
+    -fx-font-weight: bold;
+}
