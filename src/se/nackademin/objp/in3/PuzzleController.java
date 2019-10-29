@@ -26,20 +26,6 @@ public class PuzzleController {
         });
     });
 
-    /*EventHandler<ActionEvent> tileHandler = (actionEvent -> {
-        if (actionEvent.getSource() instanceof Tile) {
-            int tileId = ((Tile) actionEvent.getSource()).ID;
-            if (model.areAdjacent(0, tileId)) {
-                model.swap(0, tileId);
-                view.getBoardView().moveTile(
-                        (Tile) actionEvent.getSource(),
-                        model.getRow(tileId),
-                        model.getColumn(tileId));
-            }
-            checkWinning();
-        }
-    });*/
-
     EventHandler<ActionEvent> tileHandler = (actionEvent -> {
         if (actionEvent.getSource() instanceof Tile) {
             Tile t = (Tile) actionEvent.getSource();
@@ -63,39 +49,6 @@ public class PuzzleController {
         }
     }
 
-    /*private GridPane createBoardView() {
-        GridPane boardView = new GridPane();
-        boardView.getStyleClass().add("board-view");
-        for (Integer i : model.boardState) {
-            if (i == PuzzleModel.EMPTYSPACE) continue;
-            Tile tb = new Tile(i, tileHandler, model.getRow(i), model.getColumn(i));
-            boardView.getChildren().add(tb);
-        }
-        return boardView;
-    }*/
-
-    /*private void resetBoardView() {
-        GridPane boardView = view.getBoardView();
-        //boardView.getStyleClass().add("board-view");
-        boardView.getChildren().clear();
-        for (Integer i : model.boardState) {
-            if (i == PuzzleModel.EMPTYSPACE) continue;
-            Tile tb = new Tile(i, tileHandler, model.getRow(i), model.getColumn(i));
-            boardView.getChildren().add(tb);
-        }
-        view.setBoardDisabled(false);
-    }*/
-
-    private void resetBoardView() {
-        List<Tile> newBoard = new ArrayList<>();
-        for (Integer i : model.boardState) {
-            if (i == PuzzleModel.EMPTYSPACE) continue;
-            Tile tb = new Tile(i, tileHandler, model.getRow(i), model.getColumn(i));
-            newBoard.add(tb);
-        }
-        view.resetBoard(newBoard);
-    }
-
     PuzzleView getView() {
         return view;
     }
@@ -105,5 +58,15 @@ public class PuzzleController {
         model.shuffle();
         resetBoardView();
         view.setMessage(rows + " rader, " + cols + " kolumner");
+    }
+
+    private void resetBoardView() {
+        List<Tile> newBoard = new ArrayList<>();
+        for (Integer i : model.boardState) {
+            if (i == PuzzleModel.EMPTYSPACE) continue;
+            Tile tb = new Tile(i, tileHandler, model.getRow(i), model.getColumn(i));
+            newBoard.add(tb);
+        }
+        view.resetBoard(newBoard);
     }
 }

@@ -77,24 +77,15 @@ public class PuzzleView extends BorderPane {
         return dialog.showAndWait();
     }
 
-    void setBoardDisabled(boolean b) {
-        boardView.setDisable(b);
-    }
-
-    /*protected GridPane getBoardView() {
-        return boardView;
-    }*/
-
     protected void resetBoard(List<Tile> newBoard) {
         boardView.getChildren().clear();
         boardView.getChildren().addAll(newBoard);
         setBoardDisabled(false);
     }
 
-    /*protected void setBoardView(GridPane boardView) {
-        this.boardView = boardView;
-        this.setCenter(boardView);
-    }*/
+    void setBoardDisabled(boolean b) {
+        boardView.setDisable(b);
+    }
 
     void setMessage(String s) {
         msg.setText(s);
