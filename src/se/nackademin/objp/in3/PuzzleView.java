@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 
+import java.util.List;
 import java.util.Optional;
 
 public class PuzzleView extends BorderPane {
@@ -64,6 +65,7 @@ public class PuzzleView extends BorderPane {
         buttonPane.getChildren().addAll(newGameButton, settingsButton, exitButton);
         buttonPane.getStyleClass().add("button-pane");
 
+        boardView.getStyleClass().add("board-view");
         setTop(buttonPane);
         setBottom(msg);
         setCenter(boardView);
@@ -75,18 +77,24 @@ public class PuzzleView extends BorderPane {
         return dialog.showAndWait();
     }
 
-    void disableBoard() {
-        boardView.setDisable(true);
+    void setBoardDisabled(boolean b) {
+        boardView.setDisable(b);
     }
 
-    protected GridPane getBoardView() {
+    /*protected GridPane getBoardView() {
         return boardView;
+    }*/
+
+    protected void resetBoard(List<Tile> newBoard) {
+        boardView.getChildren().clear();
+        boardView.getChildren().addAll(newBoard);
+        setBoardDisabled(false);
     }
 
-    protected void setBoardView(GridPane boardView) {
+    /*protected void setBoardView(GridPane boardView) {
         this.boardView = boardView;
         this.setCenter(boardView);
-    }
+    }*/
 
     void setMessage(String s) {
         msg.setText(s);

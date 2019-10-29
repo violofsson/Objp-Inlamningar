@@ -2,9 +2,10 @@ package se.nackademin.objp.in3;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class PuzzleController {
@@ -58,20 +59,41 @@ public class PuzzleController {
     private void checkWinning() {
         if (model.isSolved()) {
             view.setMessage("Grattis! Du har vunnit!");
-            view.disableBoard();
+            view.setBoardDisabled(true);
         }
     }
 
-    private GridPane createBoardView() {
+    /*private GridPane createBoardView() {
         GridPane boardView = new GridPane();
         boardView.getStyleClass().add("board-view");
         for (Integer i : model.boardState) {
             if (i == PuzzleModel.EMPTYSPACE) continue;
             Tile tb = new Tile(i, tileHandler, model.getRow(i), model.getColumn(i));
             boardView.getChildren().add(tb);
-            //boardView.addTile(tb, model.getRow(i), model.getColumn(i));
         }
         return boardView;
+    }*/
+
+    /*private void resetBoardView() {
+        GridPane boardView = view.getBoardView();
+        //boardView.getStyleClass().add("board-view");
+        boardView.getChildren().clear();
+        for (Integer i : model.boardState) {
+            if (i == PuzzleModel.EMPTYSPACE) continue;
+            Tile tb = new Tile(i, tileHandler, model.getRow(i), model.getColumn(i));
+            boardView.getChildren().add(tb);
+        }
+        view.setBoardDisabled(false);
+    }*/
+
+    private void resetBoardView() {
+        List<Tile> newBoard = new ArrayList<>();
+        for (Integer i : model.boardState) {
+            if (i == PuzzleModel.EMPTYSPACE) continue;
+            Tile tb = new Tile(i, tileHandler, model.getRow(i), model.getColumn(i));
+            newBoard.add(tb);
+        }
+        view.resetBoard(newBoard);
     }
 
     PuzzleView getView() {
@@ -81,7 +103,7 @@ public class PuzzleController {
     void newGame(int rows, int cols) {
         model = new PuzzleModel(rows, cols);
         model.shuffle();
-        view.setBoardView(createBoardView());
+        resetBoardView();
         view.setMessage(rows + " rader, " + cols + " kolumner");
     }
 }
