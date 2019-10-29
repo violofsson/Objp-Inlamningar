@@ -8,13 +8,17 @@ public class BoardView extends GridPane {
         this.getStyleClass().add("board-view");
     }
 
-    void placeTile(Tile t, int row, int col) {
+    void addTile(Tile t, int row, int col) {
+        add(t, col, row);
+        setFillWidth(t, true);
+        setFillHeight(t, true);
+    }
+
+    void moveTile(Tile t, int row, int col) {
         if (super.getChildren().contains(t)) {
             setConstraints(t, col, row);
         } else {
-            add(t, col, row);
-            setFillHeight(t, true);
-            setFillWidth(t, true);
+            throw new IllegalArgumentException();
         }
     }
 }

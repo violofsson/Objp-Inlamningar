@@ -43,8 +43,7 @@ public class PuzzleView extends BorderPane {
 
             setResultConverter(buttonType -> {
                 if (buttonType == ButtonType.OK) {
-                    return new Pair<Integer, Integer>(
-                            rowsCombo.getValue(),
+                    return new Pair<>(rowsCombo.getValue(),
                             colsCombo.getValue());
                 }
                 else return null;

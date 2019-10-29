@@ -29,7 +29,7 @@ public class PuzzleController {
             int tileId = ((Tile) actionEvent.getSource()).ID;
             if (model.areAdjacent(0, tileId)) {
                 model.swap(0, tileId);
-                view.getBoardView().placeTile(
+                view.getBoardView().moveTile(
                         (Tile) actionEvent.getSource(),
                         model.getRow(tileId),
                         model.getColumn(tileId));
@@ -55,7 +55,7 @@ public class PuzzleController {
         for (Integer i : model.boardState) {
             if (i == PuzzleModel.EMPTYSPACE) continue;
             Tile tb = new Tile(i, tileHandler);
-            boardView.placeTile(tb, model.getRow(i), model.getColumn(i));
+            boardView.addTile(tb, model.getRow(i), model.getColumn(i));
         }
         return boardView;
     }
