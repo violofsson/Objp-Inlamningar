@@ -8,7 +8,7 @@ public class BoardView extends GridPane {
         this.getStyleClass().add("board-view");
     }
 
-    void placeTile(TileButton t, int row, int col) {
+    void placeTile(Tile t, int row, int col) {
         if (super.getChildren().contains(t)) {
             setConstraints(t, col, row);
         } else {

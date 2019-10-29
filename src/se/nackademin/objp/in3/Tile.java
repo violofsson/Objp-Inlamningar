@@ -4,9 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
-public class TileButton extends Button {
+public class Tile extends Button {
     public final int ID;
-    TileButton(Integer i, EventHandler<ActionEvent> handler) {
+    Tile(Integer i, EventHandler<ActionEvent> handler) {
         super(i.toString());
         ID = i;
         this.setOnAction(handler);

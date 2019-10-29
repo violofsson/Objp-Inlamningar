@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SlidingPuzzleModel {
+public class PuzzleModel {
     // Obs att vi använder 0-index överallt utom på brickornas
     // "etiketter" - där motsvarar 0 det tomma utrymmet
     // I teorin kan vi ändra typ godtyckligt, så länge vi justerar
@@ -16,7 +16,7 @@ public class SlidingPuzzleModel {
     public static final int EMPTYSPACE = 0;
     private final int COLUMNS;
 
-    SlidingPuzzleModel(int rows, int cols) {
+    PuzzleModel(int rows, int cols) {
         COLUMNS = cols;
         for (int i = 1; i < rows * cols; i++) {
             boardState.add(i);

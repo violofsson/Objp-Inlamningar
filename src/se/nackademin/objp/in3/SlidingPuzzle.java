@@ -7,8 +7,8 @@ import javafx.stage.Stage;
 public class SlidingPuzzle extends Application {
     @Override
     public void start(Stage primaryStage) {
-        SlidingPuzzleController controller = new SlidingPuzzleController();
-        SlidingPuzzleView root = controller.getView();
+        PuzzleController controller = new PuzzleController();
+        PuzzleView root = controller.getView();
 
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("15");

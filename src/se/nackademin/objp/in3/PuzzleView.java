@@ -5,12 +5,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Pair;
 
 import java.util.Optional;
 
-public class SlidingPuzzleView extends BorderPane {
+public class PuzzleView extends BorderPane {
     private static String stylesheet = "style.css";
     private BoardView boardView = new BoardView();
     private Text msg = new Text(" ");
@@ -53,7 +52,7 @@ public class SlidingPuzzleView extends BorderPane {
         }
     }
 
-    SlidingPuzzleView(SlidingPuzzleController controller) {
+    PuzzleView(PuzzleController controller) {
         super();
         Button newGameButton = new Button("Nytt spel");
         newGameButton.setOnAction(controller.newGameHandler);
