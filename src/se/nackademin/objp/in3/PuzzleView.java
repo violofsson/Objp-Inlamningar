@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class PuzzleView extends BorderPane {
     private static String stylesheet = "style.css";
-    private BoardView boardView = new BoardView();
+    private GridPane boardView = new GridPane();
     private Text msg = new Text(" ");
 
     static class SettingsDialog extends Dialog<Pair<Integer, Integer>> {
@@ -79,11 +79,11 @@ public class PuzzleView extends BorderPane {
         boardView.setDisable(true);
     }
 
-    protected BoardView getBoardView() {
+    protected GridPane getBoardView() {
         return boardView;
     }
 
-    protected void setBoardView(BoardView boardView) {
+    protected void setBoardView(GridPane boardView) {
         this.boardView = boardView;
         this.setCenter(boardView);
     }
