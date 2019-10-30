@@ -6,14 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 public class SlidingPuzzle extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //PuzzleController controller = new PuzzleController();
-        //PuzzleView root = controller.getView();
         Parent root = FXMLLoader.load(getClass().getResource("puzzleview.fxml"));
-
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("15");
         primaryStage.show();

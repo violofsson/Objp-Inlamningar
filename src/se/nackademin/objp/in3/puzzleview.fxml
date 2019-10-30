@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="se.nackademin.objp.in3.PuzzleController"
+            prefHeight="400.0" prefWidth="600.0">
+    <top>
+        <HBox>
+            <Button text="Nytt spel" onAction="#newGame"/>
+            <Button text="Inställningar" onAction="#changeSettings"/>
+            <Button text="Avsluta" onAction="#quit"/>
+        </HBox>
+    </top>
+    <center>
+        <GridPane id="board"
+                  fx:id="board"
+                  prefHeight="400"
+                  prefWidth="400"
+                  maxHeight="Infinity"
+                  maxWidth="Infinity">
+        </GridPane>
+    </center>
+    <bottom>
+        <Text id="message" fx:id="message" text=" "/>
+    </bottom>
+</BorderPane>

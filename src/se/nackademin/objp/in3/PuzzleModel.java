@@ -11,9 +11,9 @@ public class PuzzleModel {
     // värdet på EMPTYSPACE och alltid har entydiga värden att jämföra
     // mellan spelplanen och lösningen
 
-    protected List<Integer> boardState = new ArrayList<>();
+    List<Integer> boardState = new ArrayList<>();
     private List<Integer> solution;
-    public static final int EMPTYSPACE = 0;
+    static final int EMPTYSPACE = 0;
     private final int COLUMNS;
 
     PuzzleModel(int rows, int cols) {
@@ -25,50 +25,50 @@ public class PuzzleModel {
         solution = new ArrayList<>(boardState);
     }
 
-    public boolean areAdjacent(int piece1, int piece2) {
-        if (hasTile(piece1) && hasTile(piece2)) {
-            int rowDiff = Math.abs(getRow(piece1) - getRow(piece2));
-            int colDiff = Math.abs(getColumn(piece1) - getColumn(piece2));
+    boolean areAdjacent(int tileId1, int tileId2) {
+        if (hasTile(tileId1) && hasTile(tileId2)) {
+            int rowDiff = Math.abs(getRow(tileId1) - getRow(tileId2));
+            int colDiff = Math.abs(getColumn(tileId1) - getColumn(tileId2));
             return (rowDiff == 0 && colDiff == 1) || (rowDiff == 1 && colDiff == 0);
         } else {
             throw new IllegalArgumentException();
         }
     }
 
-    public int getColumn(int piece) {
-        if (hasTile(piece)) {
-            return boardState.indexOf(piece) % COLUMNS;
+    int getColumn(int tileId) {
+        if (hasTile(tileId)) {
+            return boardState.indexOf(tileId) % COLUMNS;
         } else {
             throw new IllegalArgumentException();
         }
     }
 
-    public int getRow(int piece) {
-        if (hasTile(piece)) {
-            return boardState.indexOf(piece) / COLUMNS;
+    int getRow(int tileId) {
+        if (hasTile(tileId)) {
+            return boardState.indexOf(tileId) / COLUMNS;
         } else {
             throw new IllegalArgumentException();
         }
     }
 
-    public boolean hasTile(int tile) {
-        return boardState.indexOf(tile) != -1;
+    boolean hasTile(int tileId) {
+        return boardState.indexOf(tileId) != -1;
     }
 
-    public boolean isSolved() {
+    boolean isSolved() {
         return boardState.equals(solution);
     }
 
-    public void shuffle() {
+    void shuffle() {
         Collections.shuffle(boardState);
     }
 
-    void swap(int tile1, int tile2) {
-        if (hasTile(tile1) && hasTile(tile2)) {
-            int index1 = boardState.indexOf(tile1);
-            int index2 = boardState.indexOf(tile2);
-            boardState.set(index1, tile2);
-            boardState.set(index2, tile1);
+    void swap(int tileId1, int tileId2) {
+        if (hasTile(tileId1) && hasTile(tileId2)) {
+            int index1 = boardState.indexOf(tileId1);
+            int index2 = boardState.indexOf(tileId2);
+            boardState.set(index1, tileId2);
+            boardState.set(index2, tileId1);
         } else {
             throw new IllegalArgumentException();
         }
