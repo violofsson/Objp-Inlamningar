@@ -1,5 +1,7 @@
 package se.nackademin.objp.in3;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -10,19 +12,22 @@ import javafx.util.Pair;
 import java.util.List;
 import java.util.Optional;
 
-public class PuzzleView extends BorderPane {
-    private static String stylesheet = "style.css";
-    private GridPane boardView = new GridPane();
-    private Text msg = new Text(" ");
+class SettingsDialog extends Dialog<Pair<Integer, Integer>> {
+    SettingsController ctrl;
 
-    static class SettingsDialog extends Dialog<Pair<Integer, Integer>> {
-        SettingsDialog(int oldRows, int oldCols) {
-            super();
-            this.setTitle("Inställningar");
-            this.setHeaderText(null);
-            this.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+    SettingsDialog(int oldRows, int oldCols) throws Exception {
+        super();
+        this.setTitle("Inställningar");
+        this.setHeaderText(null);
+        this.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
-            Integer[] sizes = {2, 3, 4, 5, 6, 7, 8, 9};
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("settingsdialog.fxml"));
+        Parent grid = loader.load();
+        this.ctrl = loader.getController();
+        ctrl.setDefaults(oldRows, oldCols);
+        getDialogPane().setContent(grid);
+
+            /*Integer[] sizes = {2, 3, 4, 5, 6, 7, 8, 9};
             ComboBox<Integer> rowsCombo = new ComboBox<>();
             rowsCombo.getItems().addAll(sizes);
             rowsCombo.getSelectionModel().select((Integer) oldRows);
@@ -40,17 +45,23 @@ public class PuzzleView extends BorderPane {
             grid.addRow(1, colsLabel, colsCombo);
 
             getDialogPane().setContent(grid);
-            getDialogPane().getStylesheets().add(stylesheet);
+            getDialogPane().getStylesheets().add(stylesheet);*/
 
-            setResultConverter(buttonType -> {
-                if (buttonType == ButtonType.OK) {
-                    return new Pair<>(rowsCombo.getValue(),
-                            colsCombo.getValue());
-                }
-                else return null;
-            });
-        }
+        setResultConverter(buttonType -> {
+            if (buttonType == ButtonType.OK) {
+                return new Pair<>(ctrl.rowsBox.getValue(),
+                        ctrl.colsBox.getValue());
+            }
+            else return null;
+        });
     }
+}
+
+public class PuzzleView extends BorderPane {
+    private static String stylesheet = "style.css";
+    private GridPane boardView = new GridPane();
+    private Text msg = new Text(" ");
+
 
     PuzzleView(PuzzleController controller) {
         super();
@@ -72,7 +83,7 @@ public class PuzzleView extends BorderPane {
         getStylesheets().setAll(stylesheet);
     }
 
-    Optional<Pair<Integer, Integer>> changeSettings(int oldRows, int oldCols) {
+    static Optional<Pair<Integer, Integer>> changeSettings(int oldRows, int oldCols) throws Exception {
         SettingsDialog dialog = new SettingsDialog(oldRows, oldCols);
         return dialog.showAndWait();
     }

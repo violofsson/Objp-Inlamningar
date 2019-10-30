@@ -14,6 +14,8 @@ public class Tile extends Button {
         this.setOnAction(handler);
         GridPane.setFillHeight(this, true);
         GridPane.setFillWidth(this, true);
+        setPrefSize(1000, 1000);
+        //setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         this.getStyleClass().add("tile");
         GridPane.setConstraints(this, col, row);
     }

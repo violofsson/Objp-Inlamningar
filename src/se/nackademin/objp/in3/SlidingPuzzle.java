@@ -1,14 +1,18 @@
 package se.nackademin.objp.in3;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class SlidingPuzzle extends Application {
     @Override
-    public void start(Stage primaryStage) {
-        PuzzleController controller = new PuzzleController();
-        PuzzleView root = controller.getView();
+    public void start(Stage primaryStage) throws Exception {
+        //PuzzleController controller = new PuzzleController();
+        //PuzzleView root = controller.getView();
+        Parent root = FXMLLoader.load(getClass().getResource("puzzleview.fxml"));
 
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("15");
