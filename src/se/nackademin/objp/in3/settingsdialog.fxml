@@ -10,7 +10,8 @@
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="se.nackademin.objp.in3.SettingsController"
           prefHeight="200.0" prefWidth="200.0"
-          alignment="CENTER">
+          alignment="CENTER"
+          style="-fx-font-size: 14pt;">
     <ChoiceBox id="rowsBox" fx:id="rowsBox" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
     <Label labelFor="$rowsBox" text="Rader" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
     <ChoiceBox id="colsBox" fx:id="colsBox" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
