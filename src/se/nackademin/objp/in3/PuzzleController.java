@@ -32,15 +32,10 @@ public class PuzzleController {
     });
 
     @FXML
-    void changeSettings() {
+    void changeSettings() throws Exception {
         Optional<Pair<Integer, Integer>> newSettings = Optional.empty();
-        try {
-            SettingsDialog dialog = new SettingsDialog(rows, cols);
-            newSettings = dialog.showAndWait();
-            ;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SettingsDialog dialog = new SettingsDialog(rows, cols);
+        newSettings = dialog.showAndWait();
         newSettings.ifPresent(rowsAndCols -> {
             this.rows = rowsAndCols.getKey();
             this.cols = rowsAndCols.getValue();
@@ -72,8 +67,8 @@ public class PuzzleController {
         board.getChildren().clear();
         for (Integer i : model.boardState) {
             if (i == PuzzleModel.EMPTYSPACE) continue;
-            Tile tb = new Tile(i, tileHandler, model.getRow(i), model.getColumn(i));
-            board.getChildren().add(tb);
+            Tile t = new Tile(i, tileHandler, model.getRow(i), model.getColumn(i));
+            board.getChildren().add(t);
         }
         setBoardDisable(false);
     }
