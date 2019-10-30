@@ -20,6 +20,17 @@ public class PuzzleController {
     @FXML
     private Text message;
 
+    private EventHandler<ActionEvent> tileHandler = (actionEvent -> {
+        if (actionEvent.getSource() instanceof Tile) {
+            Tile t = (Tile) actionEvent.getSource();
+            if (model.areAdjacent(0, t.ID)) {
+                model.swap(0, t.ID);
+                t.move(model.getRow(t.ID), model.getColumn(t.ID));
+            }
+            checkWinning();
+        }
+    });
+
     @FXML
     void changeSettings() {
         Optional<Pair<Integer, Integer>> newSettings = Optional.empty();
@@ -37,22 +48,6 @@ public class PuzzleController {
         });
     }
 
-    private EventHandler<ActionEvent> tileHandler = (actionEvent -> {
-        if (actionEvent.getSource() instanceof Tile) {
-            Tile t = (Tile) actionEvent.getSource();
-            if (model.areAdjacent(0, t.ID)) {
-                model.swap(0, t.ID);
-                t.move(model.getRow(t.ID), model.getColumn(t.ID));
-            }
-            checkWinning();
-        }
-    });
-
-    @FXML
-    public void initialize() {
-        newGame();
-    }
-
     private void checkWinning() {
         if (model.isSolved()) {
             setMessage("Grattis! Du har vunnit!");
@@ -61,11 +56,26 @@ public class PuzzleController {
     }
 
     @FXML
+    public void initialize() {
+        newGame();
+    }
+
+    @FXML
     void newGame() {
         model = new PuzzleModel(rows, cols);
         model.shuffle();
-        resetBoardView();
+        resetBoard();
         setMessage(rows + " rader, " + cols + " kolumner");
+    }
+
+    private void resetBoard() {
+        board.getChildren().clear();
+        for (Integer i : model.boardState) {
+            if (i == PuzzleModel.EMPTYSPACE) continue;
+            Tile tb = new Tile(i, tileHandler, model.getRow(i), model.getColumn(i));
+            board.getChildren().add(tb);
+        }
+        setBoardDisable(false);
     }
 
     private void setBoardDisable(boolean b) {
@@ -74,16 +84,6 @@ public class PuzzleController {
 
     private void setMessage(String msg) {
         message.setText(msg);
-    }
-
-    private void resetBoardView() {
-        board.getChildren().clear();
-        for (Integer i : model.boardState) {
-            if (i == PuzzleModel.EMPTYSPACE) continue;
-            Tile tb = new Tile(i, tileHandler, model.getRow(i), model.getColumn(i));
-            board.getChildren().add(tb);
-        }
-        setBoardDisable(false);
     }
 
     @FXML

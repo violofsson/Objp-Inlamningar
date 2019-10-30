@@ -3,16 +3,9 @@ package se.nackademin.objp.in3;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 import javafx.util.Pair;
 
-import java.util.List;
-import java.util.Optional;
-
-class SettingsDialog extends Dialog<Pair<Integer, Integer>> {
+public class SettingsDialog extends Dialog<Pair<Integer, Integer>> {
     private SettingsController ctrl;
     private static String stylesheet = "style.css";
 
