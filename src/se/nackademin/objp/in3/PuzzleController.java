@@ -32,10 +32,9 @@ public class PuzzleController {
     });
 
     @FXML
-    void changeSettings() throws Exception {
-        Optional<Pair<Integer, Integer>> newSettings;
+    private void changeSettings() throws Exception {
         SettingsDialog dialog = new SettingsDialog(rows, cols);
-        newSettings = dialog.showAndWait();
+        Optional<Pair<Integer, Integer>> newSettings = dialog.showAndWait();
         newSettings.ifPresent(rowsAndCols -> {
             this.rows = rowsAndCols.getKey();
             this.cols = rowsAndCols.getValue();
@@ -46,7 +45,7 @@ public class PuzzleController {
     private void checkWinning() {
         if (model.isSolved()) {
             setMessage("Grattis! Du har vunnit!");
-            setBoardDisable(true);
+            board.setDisable(true);
         }
     }
 
@@ -56,7 +55,7 @@ public class PuzzleController {
     }
 
     @FXML
-    void newGame() {
+    private void newGame() {
         model = new PuzzleModel(rows, cols);
         model.shuffle();
         resetBoard();
@@ -70,11 +69,7 @@ public class PuzzleController {
             Tile t = new Tile(i, tileHandler, model.getRow(i), model.getColumn(i));
             board.getChildren().add(t);
         }
-        setBoardDisable(false);
-    }
-
-    private void setBoardDisable(boolean b) {
-        board.setDisable(b);
+        board.setDisable(false);
     }
 
     private void setMessage(String msg) {

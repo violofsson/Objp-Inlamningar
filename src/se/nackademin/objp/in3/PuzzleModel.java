@@ -7,9 +7,6 @@ import java.util.List;
 public class PuzzleModel {
     // Obs att vi använder 0-index överallt utom på brickornas
     // "etiketter" - där motsvarar 0 det tomma utrymmet
-    // I teorin kan vi ändra typ godtyckligt, så länge vi justerar
-    // värdet på EMPTYSPACE och alltid har entydiga värden att jämföra
-    // mellan spelplanen och lösningen
 
     List<Integer> boardState = new ArrayList<>();
     private List<Integer> solution;
