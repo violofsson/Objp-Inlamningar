@@ -7,7 +7,6 @@ import javafx.util.Pair;
 
 public class SettingsDialog extends Dialog<Pair<Integer, Integer>> {
     private SettingsController ctrl;
-    private static String stylesheet = "style.css";
 
     SettingsDialog(int oldRows, int oldCols) throws Exception {
         super();
@@ -21,6 +20,5 @@ public class SettingsDialog extends Dialog<Pair<Integer, Integer>> {
         ctrl.setDefaults(oldRows, oldCols);
         setResultConverter(buttonType -> ctrl.changeSettings(buttonType));
         getDialogPane().setContent(grid);
-        //getDialogPane().getStylesheets().add(stylesheet);*/
     }
 }

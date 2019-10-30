@@ -33,7 +33,7 @@ public class PuzzleController {
 
     @FXML
     void changeSettings() throws Exception {
-        Optional<Pair<Integer, Integer>> newSettings = Optional.empty();
+        Optional<Pair<Integer, Integer>> newSettings;
         SettingsDialog dialog = new SettingsDialog(rows, cols);
         newSettings = dialog.showAndWait();
         newSettings.ifPresent(rowsAndCols -> {
